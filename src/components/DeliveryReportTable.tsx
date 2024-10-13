@@ -1,8 +1,8 @@
-const ProductTable = () => {
+const DeliveryReportTable = () => {
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Recent Products
+        Recent Deliveries
       </h4>
 
       <div className="max-w-full overflow-x-auto">
@@ -13,13 +13,13 @@ const ProductTable = () => {
                 S/N
               </th>
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                Product Type
-              </th>
-              <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Unit of Measurement
+                Delivery Details
               </th>
               <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white">
-                Description
+                Address/Outlet Delivered to
+              </th>
+              <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
+                Date and Time of Delivery
               </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Actions
@@ -38,9 +38,7 @@ const ProductTable = () => {
                 <p className="text-black dark:text-white">Ikeja, Lagos</p>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <p className="text-black dark:text-white">
-                  Pepper with the spice
-                </p>
+                <p className="text-black dark:text-white">Lagos</p>
               </td>
               <td className="py-5 px-4">
                 <div className="flex items-center space-x-3.5">
@@ -105,9 +103,7 @@ const ProductTable = () => {
                 <p className="text-black dark:text-white"> Lekkki, Lagos</p>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <p className="text-black dark:text-white">
-                  Tomato with the sauce
-                </p>
+                <p className="text-black dark:text-white">Lagos</p>
               </td>
               <td className="py-5 px-4">
                 <div className="flex items-center space-x-3.5">
@@ -167,4 +163,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default DeliveryReportTable;

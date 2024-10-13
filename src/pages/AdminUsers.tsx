@@ -2,6 +2,7 @@ import AdminCardOne from '../components/AdminCardOne.tsx';
 import AdminCardTwo from '../components/AdminCardTwo.tsx';
 import AdminCardThree from '../components/AdminCardThree.tsx';
 import AdminTable from '../components/AdminTable.tsx';
+import Breadcrumb from '../components/Breadcrumb';
 
 const customers = [
   {
@@ -51,6 +52,8 @@ const customers = [
 const AdminUsers = () => {
   return (
     <>
+      <Breadcrumb pageName="Admins" />
+
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
         <AdminCardOne />
         <AdminCardTwo />

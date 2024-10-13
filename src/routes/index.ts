@@ -16,12 +16,38 @@ const Reports = lazy(() => import('../pages/Reports'));
 const Finances = lazy(() => import('../pages/Finances'));
 const Approvals = lazy(() => import('../pages/Approvals'));
 const Customers = lazy(() => import('../pages/Customers'));
+const SalesReport = lazy(() => import('../pages/ReportsUi/SalesReport'));
+const DeliveryReport = lazy(() => import('../pages/ReportsUi/DeliveryReport'));
+const OrdersReport = lazy(() => import('../pages/ReportsUi/OrdersReport'));
+const FinancialReport = lazy(
+  () => import('../pages/ReportsUi/FinancialReport'),
+);
 
 const coreRoutes = [
   {
     path: '/admin-users',
     title: 'Admin Users',
     component: AdminUsers,
+  },
+  {
+    path: '/reports/sales-report',
+    title: 'Sales Report',
+    component: SalesReport,
+  },
+  {
+    path: '/reports/delivery-report',
+    title: 'Delivery Report',
+    component: DeliveryReport,
+  },
+  {
+    path: '/reports/orders-report',
+    title: 'Orders Report',
+    component: OrdersReport,
+  },
+  {
+    path: '/reports/financial-report',
+    title: 'Financial Report',
+    component: FinancialReport,
   },
   {
     path: '/products',

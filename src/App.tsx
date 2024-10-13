@@ -1,5 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 
 import ECommerce from './pages/Dashboard/ECommerce';
@@ -30,9 +30,12 @@ function App() {
         <Route path="/auth/signin" element={<SignIn />} />
         <Route path="/auth/signup" element={<SignUp />} />
         <Route element={<DefaultLayout />}>
-          <Route index element={<ECommerce />} />
-          {routes.map((routes, index) => {
-            const { path, component: Component } = routes;
+          <Route index element={<Navigate to="/auth/signin" replace />} />
+          <Route path="*" element={<Navigate to="/auth/signin" replace />} />
+          <Route path="/" element={<Navigate to="/auth/signin" replace />} />
+          <Route path="/dashboard" element={<ECommerce />} />
+          {routes.map((route, index) => {
+            const { path, component: Component } = route;
             return (
               <Route
                 key={index}

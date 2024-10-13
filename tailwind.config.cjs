@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
       bodydark: '#AEB7C0',
       bodydark1: '#DEE4EE',
       bodydark2: '#8A99AF',
-      primary: '#3C50E0',
+      primary: '#1B75BC',
       secondary: '#80CAEE',
       stroke: '#E2E8F0',
       gray: '#EFF4FB',
@@ -251,4 +251,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

@@ -1,8 +1,8 @@
-const ProductTable = () => {
+const OrdersReportTable = () => {
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
-        Recent Products
+        All Order Reports
       </h4>
 
       <div className="max-w-full overflow-x-auto">
@@ -10,16 +10,16 @@ const ProductTable = () => {
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                S/N
+                Order No.
               </th>
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                Product Type
+                Order date and Time
               </th>
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Unit of Measurement
+                Items Ordered
               </th>
               <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white">
-                Description
+                Current Status
               </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Actions
@@ -38,8 +38,8 @@ const ProductTable = () => {
                 <p className="text-black dark:text-white">Ikeja, Lagos</p>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <p className="text-black dark:text-white">
-                  Pepper with the spice
+                <p className="inline-flex rounded-full bg-success bg-opacity-10 py-1 px-3 text-sm font-medium text-success">
+                  Delivered
                 </p>
               </td>
               <td className="py-5 px-4">
@@ -105,8 +105,8 @@ const ProductTable = () => {
                 <p className="text-black dark:text-white"> Lekkki, Lagos</p>
               </td>
               <td className="border-b border-[#eee] py-5 px-4 dark:border-strokedark">
-                <p className="text-black dark:text-white">
-                  Tomato with the sauce
+                <p className="inline-flex rounded-full bg-danger bg-opacity-10 py-1 px-3 text-sm font-medium text-danger">
+                  Cancelled
                 </p>
               </td>
               <td className="py-5 px-4">
@@ -167,4 +167,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default OrdersReportTable;

@@ -1,4 +1,4 @@
-const ProductTable = () => {
+const SalesReportTable = () => {
   return (
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <h4 className="mb-6 text-xl font-semibold text-black dark:text-white">
@@ -10,16 +10,16 @@ const ProductTable = () => {
           <thead>
             <tr className="bg-gray-2 text-left dark:bg-meta-4">
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white xl:pl-11">
-                S/N
+                Order No.
               </th>
               <th className="min-w-[150px] py-4 px-4 font-medium text-black dark:text-white">
-                Product Type
+                Order Details
               </th>
               <th className="min-w-[120px] py-4 px-4 font-medium text-black dark:text-white">
-                Unit of Measurement
+                Product Price
               </th>
               <th className="min-w-[220px] py-4 px-4 font-medium text-black dark:text-white">
-                Description
+                Units
               </th>
               <th className="py-4 px-4 font-medium text-black dark:text-white">
                 Actions
@@ -167,4 +167,4 @@ const ProductTable = () => {
   );
 };
 
-export default ProductTable;
+export default SalesReportTable;
