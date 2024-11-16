@@ -1,7 +1,7 @@
 import Breadcrumb from '../components/Breadcrumb';
 import ProductTable from '../components/ProductTable.js';
 
-const Customers = () => {
+const Products = () => {
   return (
     <>
       <Breadcrumb pageName="Products" />
@@ -15,4 +15,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default Products;

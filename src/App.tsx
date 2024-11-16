@@ -7,6 +7,7 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
 import routes from './routes';
+import { login } from '../src/api/admin/auth';
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
@@ -15,6 +16,11 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => setLoading(false), 1000);
+  }, []);
+
+  useEffect(() => {
+    console.log(`Say HI @App`);
+    login('damola@test.com', 'SuperPass123');
   }, []);
 
   return loading ? (

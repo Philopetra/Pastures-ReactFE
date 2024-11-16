@@ -1,8 +1,28 @@
-import { Link } from 'react-router-dom';
+import { useContext, useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
+import { login } from '../../api/admin/auth';
+import ShowErrorList from '../../components/ShowErrorList';
+import { jwtDecode } from 'jwt-decode';
+
 import Logo from '../../images/logo/Pastures Logos-color.png';
 import LogoColor from '../../images/logo/Pastures Logos-Hfull-color.png';
 
 const SignIn = () => {
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [passwordType, setPasswordType] = useState('password');
+  // const { setAccessToken } = useContext(AppContext);
+
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+    remember: false,
+  });
+
+  const [errors, setErrors] = useState(null);
+  const navigate = useNavigate();
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
