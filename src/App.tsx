@@ -7,7 +7,7 @@ import SignIn from './pages/Authentication/SignIn';
 import SignUp from './pages/Authentication/SignUp';
 import Loader from './common/Loader';
 import routes from './routes';
-import { login } from '../src/api/admin/auth';
+import { AppContextProvider }  from '../src/context/AppContext';
 
 const DefaultLayout = lazy(() => import('./layout/DefaultLayout'));
 
@@ -18,15 +18,14 @@ function App() {
     setTimeout(() => setLoading(false), 1000);
   }, []);
 
-  useEffect(() => {
-    console.log(`Say HI @App`);
-    login('damola@test.com', 'SuperPass123');
-  }, []);
+  console.log(`Hi @App`, localStorage);
+
 
   return loading ? (
     <Loader />
   ) : (
     <>
+    <AppContextProvider>
       <Toaster
         position="top-right"
         reverseOrder={false}
@@ -56,6 +55,7 @@ function App() {
           })}
         </Route>
       </Routes>
+      </AppContextProvider>
     </>
   );
 }

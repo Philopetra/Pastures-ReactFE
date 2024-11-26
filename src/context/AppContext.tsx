@@ -1,32 +1,33 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  ReactNode,
-  useContext,
-} from 'react';
+import React, { createContext, useState, useEffect, ReactNode, Dispatch, SetStateAction } from "react";
 
-interface AppContextType {
+// Define the shape of the context's value
+interface AppContextProps {
   accessToken: string;
-  setAccessToken: (token: string) => void;
+  setAccessToken: Dispatch<SetStateAction<string>>;
 }
 
-export const AppContext = createContext<AppContextType | undefined>(undefined);
+// Provide a default value for the context
+export const AppContext = createContext<AppContextProps>({
+  accessToken: "",
+  setAccessToken: () => {},
+});
 
+// Define the shape of the provider's props
 interface AppContextProviderProps {
   children: ReactNode;
 }
 
-export const AppContextProvider: React.FC<AppContextProviderProps> = ({
-  children,
-}) => {
-  const [accessToken, setAccessToken] = useState(() => {
-    const localData = localStorage.getItem('accessToken');
-    return localData ? localData : '';
+const initialAccessToken: string = "";
+
+// Create the AppContextProvider component
+export const AppContextProvider: React.FC<AppContextProviderProps> = ({ children }) => {
+  const [accessToken, setAccessToken] = useState<string>(() => {
+    const localData = localStorage.getItem("accessToken");
+    return localData ? localData : initialAccessToken;
   });
 
   useEffect(() => {
-    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem("accessToken", accessToken);
   }, [accessToken]);
 
   return (

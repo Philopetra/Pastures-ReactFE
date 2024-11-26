@@ -1,19 +1,17 @@
-import { useContext, useState, useRef } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../context/AppContext';
 import { login } from '../../api/admin/auth';
-import ShowErrorList from '../../components/ShowErrorList';
 import { jwtDecode } from 'jwt-decode';
 
 import Logo from '../../images/logo/Pastures Logos-color.png';
 import LogoColor from '../../images/logo/Pastures Logos-Hfull-color.png';
 
-const SignIn = () => {
-  const userRef = useRef();
-  const errRef = useRef();
 
-  const [passwordType, setPasswordType] = useState('password');
-  // const { setAccessToken } = useContext(AppContext);
+
+const SignIn = () => {
+  const user_Ref = useRef<HTMLInputElement | null>();
+  const errRef = useRef<HTMLParagraphElement | null>(null);
 
   const [data, setData] = useState({
     email: '',
@@ -21,8 +19,67 @@ const SignIn = () => {
     remember: false,
   });
 
-  const [errors, setErrors] = useState(null);
+  const [errors, setErrors] = useState("");
   const navigate = useNavigate();
+
+ 
+  useEffect(() => {
+    // Using optional chaining
+    user_Ref.current?.focus();
+}, []);
+
+  useEffect(()=> {
+  setErrors("");
+  }, [data.email, data.password])
+
+  const [passwordType, setPasswordType] = useState('password');
+
+    // Function to toggle password visibility
+  const togglePasswordVisibility = () => {
+        setPasswordType(prevType => (prevType === 'password' ? 'text' : 'password'))};
+
+  const { setAccessToken } = useContext(AppContext);
+
+  const handleChange = (e: any) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    setData({...data, [name]: value});
+  }
+
+  const submit = async (e: any) => {
+    e.preventDefault();
+    try {
+      const res = await login(data.email, data.password); // Assuming this is your API call
+  
+      if (res?.isSuccessful === false) {
+        console.error(res.message);
+        setErrors(res.message); // Handle non-validation errors
+        return;
+      }
+  
+      if (res.isSuccessful === true) {
+        const token = res.data.token
+        
+        console.log(localStorage);
+        setAccessToken(token);
+        const decodedToken = jwtDecode(res.data.token);
+        console.log(decodedToken);
+        
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      // Handle validation errors from the interceptor
+      if (error instanceof Error) {
+        console.error(error.message); // Log the error message
+        setErrors(error.message); // Set the error message for display
+      } else {
+        console.error('An unexpected error occurred:', error);
+        setErrors('An unexpected error occurred. Please try again later.');
+      }
+    }
+  };
+
   return (
     <>
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -170,8 +227,11 @@ const SignIn = () => {
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                 Sign In to Pastures Nigeria
               </h2>
+              <p ref={errRef} className={errors ? " text-meta-1 mb-3": "offscreen"} aria-live='assertive'>
+                {errors}
+              </p>
 
-              <form>
+              <form onSubmit={submit}>
                 <div className="mb-4">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
                     Email
@@ -180,6 +240,9 @@ const SignIn = () => {
                     <input
                       type="email"
                       placeholder="Enter your email"
+                      name='email'
+                      required
+                      onChange={handleChange}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
 
@@ -205,12 +268,15 @@ const SignIn = () => {
 
                 <div className="mb-6">
                   <label className="mb-2.5 block font-medium text-black dark:text-white">
-                    Re-type Password
+                    Type Password
                   </label>
                   <div className="relative">
                     <input
-                      type="password"
-                      placeholder="6+ Characters, 1 Capital letter"
+                      type={passwordType}
+                      placeholder="Enter your Password"
+                      name='password'
+                      required
+                      onChange={handleChange}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 outline-none focus:border-primary focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
                     />
 
@@ -222,6 +288,8 @@ const SignIn = () => {
                         viewBox="0 0 22 22"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
+                        cursor={"pointer"}
+                        onClick={togglePasswordVisibility}
                       >
                         <g opacity="0.5">
                           <path
